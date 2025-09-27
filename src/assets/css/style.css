@@ -50,7 +50,7 @@ input::placeholder{
     gap: 20px;
     background: var(--block-bg);
     width: 240px;
-    border-radius: 0px 0px 0px 20px;
+    border-radius: 0 0 0 20px;
     padding: 12px 20px;
 }
 
@@ -70,16 +70,17 @@ input::placeholder{
 
 .start-block{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    margin: 100px;
     gap: 40px;
-    margin: 68px 20px 0px 20px;
 }
 
 .form-player {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 493px;
+    width: 100%;
+    max-width: 500px;
 }
 
 .form-title {
