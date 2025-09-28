@@ -59,7 +59,8 @@ export class GameUI {
     renderFish = (count) => {
         for (let i = 0; i < count; i++) {
             const fish = document.createElement('div');
-            const size = [10, 20, 30, 40][Math.floor(Math.random() * 4)];
+            const size = [10, 20, 30, 40][Math.floor(Math.random() * 4) - 1];
+            const speed = Math.floor(Math.random() * 10) + 2;
 
             fish.className = 'fish';
             fish.dataset.points = size;
@@ -74,15 +75,15 @@ export class GameUI {
             fish.style.backgroundImage = `url('./src/assets/img/general-images/fish.png')`;
 
             this.gameArea.appendChild(fish);
-            this.moveFish(fish);
+            this.moveFish(fish, speed);
         }
     }
 
-    moveFish = (fish) => {
+    moveFish = (fish, speed) => {
         let left = parseInt(fish.style.left) || 0;
 
         const animate = () => {
-            left += 2;
+            left += speed;
             fish.style.left = `${left}px`;
 
             if (left + fish.clientWidth > this.gameArea.clientWidth) {
