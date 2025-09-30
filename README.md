@@ -12,7 +12,8 @@
 - Таймер обратного отсчёта
 - Подсчёт очков
 - Таблица топ-10 игроков
-
+- Сохранение рейтинга игроков в Local Storage
+  
 ## Технологии
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
