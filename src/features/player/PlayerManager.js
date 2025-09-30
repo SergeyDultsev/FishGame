@@ -10,6 +10,15 @@ export class PlayerManager {
         this.gameUI = gameUI;
     }
 
+    setPlayers = () => {
+        localStorage.setItem('player', JSON.stringify(this.players));
+    }
+
+    getPlayers = () => {
+        this.players = JSON.parse(localStorage.getItem('player'));
+        this.gameUI.renderPlayers(this.players);
+    }
+
     addPlayer = (name, points) => {
         const newPlayer = new Player(name, points);
         this.players.push(newPlayer);
@@ -18,5 +27,6 @@ export class PlayerManager {
         this.players = this.players.slice(0, 10);
 
         this.gameUI.renderPlayers(this.players);
+        this.setPlayers();
     };
 }

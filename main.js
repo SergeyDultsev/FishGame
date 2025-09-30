@@ -10,6 +10,8 @@ const gameUI = new GameUI(gameManager, playerManager);
 gameManager.setUI(gameUI);
 playerManager.setUI(gameUI);
 
+playerManager.getPlayers();
+
 document.getElementById('play').addEventListener('click',  () => {
     const name = document.getElementById('player-name').value.trim();
     if (!name) return;

@@ -29,10 +29,13 @@ export class GameManager {
 
     stop = () => {
         this.game.stateGame = false;
+
         clearInterval(this.game.fishInterval);
         clearInterval(this.game.timeInterval);
+
         this.gameUI.clearGameArea();
         this.gameUI.showMenu();
+
         if (this.player) this.gameUI.setPlayer(this.player.name, this.player.points);
         this.player.reset();
     }
