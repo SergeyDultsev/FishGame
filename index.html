@@ -9,6 +9,7 @@
 </head>
 <body>
     <main class="main">
+
         <section class="check-block">
             <p class="check-item check-item__point">0</p>
             <div class="check-border"></div>
@@ -16,20 +17,28 @@
         </section>
 
         <div class="start-block">
+
             <form class="form-player" method="post" action="#">
                 <h2 class="form-title">Введите имя игрока</h2>
-                <input id="player-name" class="form-input" type="text" placeholder="SERGEY_DULTSEV"/>
+                <input id="player-name" class="form-input" type="text" placeholder="SERGEY_DULTSEV" />
                 <button id="play" class="btn" type="button">Играть</button>
             </form>
-            <div class="rating">
-                <h2 class="rating__title">Таблица рейтингов 10 лучших игроков</h2>
-                <div class="player-list"></div>
-            </div>
+
+            <section class="rating">
+                <div class="rating-header">
+                    <h2 class="rating__title">Таблица рейтингов 10 лучших игроков</h2>
+                </div>
+                <div class="rating-body">
+                    <section class="player-list"></section>
+                </div>
+            </section>
+
         </div>
 
         <section class="sea sea-waves">
             <div class="game-area"></div>
         </section>
+
     </main>
 </body>
 </html>
