@@ -181,7 +181,7 @@ input::placeholder {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 800px;
+    height: 1000px;
     background-color: var(--sea-color);
 }
 
@@ -189,7 +189,7 @@ input::placeholder {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 350px;
+    height: 500px;
 }
 
 @keyframes sea-waves {

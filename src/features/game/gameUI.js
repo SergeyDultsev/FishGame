@@ -59,8 +59,8 @@ export class GameUI {
     renderFish = (count) => {
         for (let i = 0; i < count; i++) {
             const fish = document.createElement('div');
-            const size = [10, 20, 30, 40][Math.floor(Math.random() * 4) - 1];
-            const speed = Math.floor(Math.random() * 10) + 2;
+            const size = [15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 7) - 4];
+            const speed = Math.floor(Math.random() * 4) + 2;
 
             fish.className = 'fish';
             fish.dataset.points = size;
@@ -70,25 +70,44 @@ export class GameUI {
             let x = Math.floor(Math.random() * (this.gameArea.clientWidth - size));
             let y = Math.floor(Math.random() * (this.gameArea.clientHeight - size));
 
-            fish.style.left = `${x}px`;
+            const isMoving  = Math.random() >= 0.5;
+
+            if (isMoving) {
+                fish.style.left = `${-size}px`;
+                fish.style.transform = `scaleX(1)`;
+            } else {
+                fish.style.left = `${this.gameArea.clientHeight}px`;
+                fish.style.transform = `scaleX(-1)`;
+            }
+
             fish.style.top = `${y}px`;
             fish.style.backgroundImage = `url('./src/assets/img/general-images/fish.png')`;
 
             this.gameArea.appendChild(fish);
-            this.moveFish(fish, speed);
+            this.moveFish(fish, speed, isMoving);
         }
     }
 
-    moveFish = (fish, speed) => {
-        let left = parseInt(fish.style.left) || 0;
+    moveFish = (fish, speed, isMoving) => {
+        let currentX = parseInt(fish.style.left) || 0;
 
         const animate = () => {
-            left += speed;
-            fish.style.left = `${left}px`;
+            if (isMoving) {
+                currentX += speed;
+                fish.style.left = `${currentX}px`;
 
-            if (left + fish.clientWidth > this.gameArea.clientWidth) {
-                fish.remove();
-                return;
+                if (currentX > this.gameArea.clientWidth) {
+                    fish.remove();
+                    return;
+                }
+            } else {
+                currentX -= speed;
+                fish.style.left = `${currentX}px`;
+
+                if (currentX + fish.clientWidth < 0) {
+                    fish.remove();
+                    return;
+                }
             }
 
             requestAnimationFrame(animate);
