@@ -108,8 +108,8 @@ export class GameUI {
         players.forEach((player, id) => {
             playerList.insertAdjacentHTML('beforeend', `
                 <article class="player-item">
-                    <p id="player-id" class="player-data">${id + 1}</p>
                     <div class="player-item__data">
+                        <p id="player-id" class="player-data">${id + 1}</p>
                         <p id="player-name" class="player-data">${player.name}</p>
                         <p id="player-point" class="player-data">${player.points}</p>
                     </div>
