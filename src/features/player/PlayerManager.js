@@ -15,7 +15,8 @@ export class PlayerManager {
     }
 
     getPlayers = () => {
-        this.players = JSON.parse(localStorage.getItem('player'));
+        const data = JSON.parse(localStorage.getItem('player'))
+        this.players = Array.isArray(data) ? data : [];
         this.gameUI.renderPlayers(this.players);
     }
 

@@ -57,20 +57,28 @@ export class GameUI {
     };
 
     renderFish = (count) => {
+        const sizes = [15, 20, 25, 30, 35, 40, 45, 50];
+
+        const centerX = this.gameArea.clientWidth / 2;
+        const centerY = this.gameArea.clientHeight / 2;
+
         for (let i = 0; i < count; i++) {
             const fish = document.createElement('div');
-            const size = [15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 7) - 4];
+            const size = sizes[Math.floor(Math.random() * sizes.length)];
             const speed = Math.floor(Math.random() * 4) + 2;
 
             fish.className = 'fish';
-            fish.dataset.points = size;
+            fish.dataset.points = this.pointsFish(size, speed);
             fish.style.width = `${size}px`;
             fish.style.height = `${size}px`;
 
-            let x = Math.floor(Math.random() * (this.gameArea.clientWidth - size));
-            let y = Math.floor(Math.random() * (this.gameArea.clientHeight - size));
-
             const isMoving  = Math.random() >= 0.5;
+
+            const offsetX = Math.random() * 80 - 40;
+            const offsetY = Math.random() * 80 - 40;
+
+            let x = centerX + offsetX - size / 2;
+            let y = centerY + offsetY - size / 2
 
             if (isMoving) {
                 fish.style.left = `${-size}px`;
@@ -80,12 +88,19 @@ export class GameUI {
                 fish.style.transform = `scaleX(-1)`;
             }
 
+            fish.style.left = `${x}px`;
             fish.style.top = `${y}px`;
+            fish.style.transform = `scaleX(${isMoving ? 1 : -1})`;
             fish.style.backgroundImage = `url('./src/assets/img/general-images/fish.png')`;
 
             this.gameArea.appendChild(fish);
             this.moveFish(fish, speed, isMoving);
         }
+    }
+
+    pointsFish = (size, speed) => {
+        if (!size || !speed) return 1;
+        return Math.round((speed ** 2 / size) * 500);
     }
 
     moveFish = (fish, speed, isMoving) => {
